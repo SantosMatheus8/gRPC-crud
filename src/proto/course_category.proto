@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package category_course;
+
+message blank{}
+
+message Category {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message CreateCategoryRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message CategoryList {
+    repeated Category data = 1;
+}
+
+message CategoryGetRequest {
+    int32 id = 1;
+}
+
+service CategoryService {
+    rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+    rpc ListCategories(blank) returns (CategoryList) {}
+    rpc GetCategory(CategoryGetRequest) returns (Category) {}
+    rpc Update(Category) returns (Category) {}
+    rpc Delete(CategoryGetRequest) returns (blank) {}
+}
+
+
